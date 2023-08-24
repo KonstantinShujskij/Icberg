@@ -1,0 +1,144 @@
+.main {
+    padding: 48px;
+}
+
+.top {
+    width: 100%;
+    display: flex;
+    gap: 36px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 48px;
+}
+
+.prew {
+    width: 50%;
+    flex-shrink: none;
+    height: 0;
+    padding-top: 26%;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.prew img {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    object-fit: cover;
+    position: absolute;
+}
+
+.info {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    flex-direction: column;
+    align-self: stretch;
+}
+
+.title {
+    font-size: 28px;
+    color: #171719;
+    text-transform: capitalize;
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
+.description {
+    font-size: 16px;
+    color: #323232;
+    width: 100%;
+    height: 120px;
+    resize: none;
+    margin-bottom: 16px;
+    border: none;
+    outline: none;
+    margin-top: 16px;
+    text-align: justify;
+}
+
+.load {
+    width: 100%;
+    margin-top: auto;
+    padding: 12px 8px;
+    border-radius: 8px;
+    border: none;
+
+    background-color: #3943B7;
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.image {
+    width: 100%;
+    height: 0;
+    padding-top: 50vh;
+    border-radius: 16px;
+    overflow: hidden;
+
+    position: relative;
+
+    margin-bottom: 48px;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    object-fit: cover;
+}
+
+.header {
+    font-size: 42px;
+    font-weight: 500;
+
+    margin-bottom: 16px;
+}
+
+.text {
+    width: 100%;
+    min-height: 360px;
+    height: auto;
+    resize: none;
+    margin-bottom: 16px;
+    border: none;
+    outline: none;
+    margin-top: 16px;    
+
+    font-size: 17px;
+    color: #323232;
+    text-align: justify;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+}
+
+.button {
+    width: 100%;
+    max-width: 240px;
+
+    padding: 12px 8px;
+    border-radius: 8px;
+    border: none;
+
+    background-color: #3943B7;
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    margin-left: auto;
+}

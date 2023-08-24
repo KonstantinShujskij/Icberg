@@ -1,0 +1,22 @@
+{
+    "serverUrl": "",
+    "baseUrl": "",
+    "port": 5000,
+
+    "jwtSecret": "",
+    "jwtAlive": "1h",
+
+    "googleClientId": "",
+    "googleSecretKey": "",
+
+    "mongoUri": "",
+    
+    "mail": {
+        "smtp": "",
+        "port": 465,
+        "client": "",
+        "password": ""
+    },
+
+    "captchaAlive": "1m"
+}

@@ -1,0 +1,25 @@
+import React, { useCallback, useEffect, useState } from 'react'
+import useArcleApi from '../API/arcle.api'
+import Arcle from '../Components/Arcle'
+
+
+function Arcles() {
+    const { getArcles } = useArcleApi()
+
+    const [arcles, setArcles] = useState([])
+
+    const loadArcles = useCallback(async () => setArcles(await getArcles()), [])
+
+    useEffect(() => {
+        loadArcles().catch(console.error)
+    }, [loadArcles])
+
+
+    return (
+        <div>
+            {arcles.map((arcle) => <Arcle arcle={arcle} key={arcle._id} />)}
+        </div>
+    )
+}
+
+export default Arcles
