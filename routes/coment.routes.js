@@ -11,7 +11,7 @@ const router = Router()
 
 router.post('/create', auth, isExist, isComplite, 
     [
-        check('text', 'IncorectComent').isString().isLength({min: 3, max: 500}),
+        check('text', 'IncorectComent').isString().isLength({min: 3, max: 500}) // Magic Values
     ], 
     trappiner(async (req, res) => {
         await Coment.create(req.author, req.body)

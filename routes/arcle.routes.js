@@ -17,7 +17,8 @@ router.post('/create', auth, isExist, isComplite,
     [
         check('title', 'IncorectTitle').isString().isLength({min: 6}),
         check('description', 'IncorectDescription').isString().isLength({min: 4, max: 500}),
-        check('text', 'IncorectText').isString().isLength({min: 10, max: 10000}),
+        check('text', 'IncorectText').isString().isLength({min: 10, max: 10000}), 
+        // Magic Values
     ], trappiner(async (req, res) => {
         const image = req.file?.filename
 
@@ -34,6 +35,7 @@ router.post('/update', auth, isExist, isComplite,
         check('title', 'IncorectTitle').isString().isLength({min: 6}),
         check('description', 'IncorectDescription').isString().isLength({min: 4, max: 500}),
         check('text', 'IncorectText').isString().isLength({min: 10, max: 10000}),
+        // Magic Values
     ], 
     trappiner(async (req, res) => {
         const { id } = req.body

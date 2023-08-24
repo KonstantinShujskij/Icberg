@@ -4,7 +4,7 @@ const storage = multer.diskStorage({
     destination(req, _file, callback) { 
         let prefix = ''
 
-        // Magic Constant
+        // Magic Values
         if(req?.customPayload?.loadType === 'avatar') { prefix = `${req.author._id}/` }
         if(req?.customPayload?.loadType === 'arcle') { prefix = `${req.author._id}/arcles/` }
  
@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
     }
 })
 
-const types = ['image/png', 'image/jpg', 'image/jpeg'] // no define constants
+const types = ['image/png', 'image/jpg', 'image/jpeg'] // Magic Values
 
 const fileFilter = (req, file, callback) => {
     if(types.includes(file?.mimetype)) { callback(null, true) }

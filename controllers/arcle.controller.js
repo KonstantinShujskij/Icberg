@@ -8,7 +8,7 @@ const Arcle = require('../models/Arcle.model')
 async function create(author, params, image) {
     const candidate = await Arcle.findOne({ author: author._id, title: params.title })
     if(candidate) { throw errors.arcleIsExist }
-    if(!image) { throw errors.unknown } // Handle Error
+    if(!image) { throw errors.unknown }
 
     const arcle = new Arcle({
         title: params.title,

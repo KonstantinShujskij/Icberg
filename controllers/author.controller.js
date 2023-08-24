@@ -15,7 +15,7 @@ async function login(email, password, service='none') {
         const hashedPassword = service === 'none'? await bcrypt.hash(password, 12) : 'None'
         
         let verify = false
-        if(service === 'google') { verify = true } // Magic Constant
+        if(service === 'google') { verify = true } // Magic Values
 
         let author = await Author.findOne({ email })
         if(!author) { author = new Author({ email }) }
@@ -37,7 +37,7 @@ async function login(email, password, service='none') {
         return author
     }
 
-    if(service === 'google') { return author }
+    if(service === 'google') { return author } // Magic Values
 
     const isMatch = await bcrypt.compare(password, author.password);
     if(!isMatch) { throw errors.notFind }

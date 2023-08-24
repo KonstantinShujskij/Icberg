@@ -14,7 +14,7 @@ const googleOptions = {
 const googleStrategy = new passportGoogle.OAuth2Strategy(googleOptions,
     async (_request, _accessToken, _refreshToken, profile, done) => { 
         const email = profile._json.email
-        const author = await Author.login(email, undefined, 'google') // Magic Const
+        const author = await Author.login(email, undefined, 'google') // Magic Values
 
         return done(null, author)
 })

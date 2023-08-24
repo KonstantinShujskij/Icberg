@@ -18,6 +18,7 @@ router.post('/update', auth, isExist,
         check('name', 'IncorectName').optional({checkFalsy: true}).isString().isLength({min: 2}),
         check('lastname', 'IncorectLastname').optional({checkFalsy: true}).isString().isLength({min: 2}),
         check('website', 'IncorectWebsite').optional({checkFalsy: true}).isURL()
+        // Magic Values
     ],
     trappiner(async (req, res) => {
         const avatar = req.file?.filename

@@ -13,9 +13,9 @@ const Author = require('../controllers/author.controller')
 
 const router = Router()
 
-router.get('/google', passport.authenticate('google', { session: false, scope: ['email'] })) // Magic Const
+router.get('/google', passport.authenticate('google', { session: false, scope: ['email'] })) // Magic Values
 
-router.get('/google/redirect', passport.authenticate('google', { session: false }), (req, res) => {
+router.get('/google/redirect', passport.authenticate('google', { session: false }), (req, res) => { // Magic Values
     const author = req.user
     const token = generateLoginJwt(author._id)
 
@@ -26,7 +26,7 @@ router.get('/google/redirect', passport.authenticate('google', { session: false 
 router.post('/login', captcha,
     [
         check('email', 'IncorectEmail').isEmail(),
-        check('password', 'IncorectPassword').isLength({min: 8})
+        check('password', 'IncorectPassword').isLength({min: 8}) // Magic Values
     ], 
     trappiner(async (req, res) => {
         const {email, password} = req.body
