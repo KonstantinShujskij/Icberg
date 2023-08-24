@@ -6,6 +6,9 @@ import Arcle from '../Components/Arcle'
 import { FRONT_URL } from '../const'
 import { useParams } from 'react-router-dom'
 
+import styles from '../styles/author.page.module.css'
+
+
 function Author() {
     const { id } = useParams()
 

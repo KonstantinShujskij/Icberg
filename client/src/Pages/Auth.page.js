@@ -7,6 +7,9 @@ import { useNavigate } from 'react-router-dom'
 import useCaptcha from '../Hooks/captcha.hook'
 import Captcha from '../Components/Captcha'
 
+import styles from '../styles/auth.page.module.css'
+
+
 function Auth() {
     const { loginUser } = useUserApi()
     const { login } = useAuth()

@@ -1,5 +1,8 @@
 import React from 'react'
 
+import styles from '../styles/wait.page.module.css'
+
+
 function Wait() {
     return (
         <div>

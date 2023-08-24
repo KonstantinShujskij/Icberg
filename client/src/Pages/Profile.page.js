@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import style from '../styles/profile.page.module.css'
 import Arcle from '../Components/Arcle'
 import { useSelector } from 'react-redux'
 import * as selectors from '../redux/selectors/user.selectors'
 import useArcleApi from '../API/arcle.api'
 import { Link } from 'react-router-dom'
+import style from '../styles/profile.page.module.css'
 
 
 function Profile() {

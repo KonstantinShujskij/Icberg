@@ -3,6 +3,9 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import useUserApi from '../API/user.api'
 import useAuth from '../Hooks/auth.hook'
 
+import styles from '../styles/confirm.page.module.css'
+
+
 function Confirm() {
     const navigate = useNavigate()
     const { login } = useAuth()

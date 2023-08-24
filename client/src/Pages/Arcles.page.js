@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import useArcleApi from '../API/arcle.api'
 import Arcle from '../Components/Arcle'
 
+import styles from '../styles/arcles.page.module.css'
 
 function Arcles() {
     const { getArcles } = useArcleApi()
