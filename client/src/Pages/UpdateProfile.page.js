@@ -45,13 +45,13 @@ function UpdateProfile() {
         <div className={styles.main}>
             <div className={styles.image}>
                 {avatar.element}
-                <img src={avatarSourse} />
+                <img src={avatarSourse} alt="Avatar" />
             </div>
             <div className={styles.form}>
                 <div className={styles.info}>
-                    <input {...name.bind} placeholder='name'/>
-                    <input {...lastname.bind} placeholder='lastname'/>
-                    <input {...website.bind} placeholder='web-site'/>
+                    <input {...name.bind} placeholder="name"/>
+                    <input {...lastname.bind} placeholder="lastname"/>
+                    <input {...website.bind} placeholder="web-site"/>
                 </div>
                 <div className={styles.buttons}>
                     <button onClick={avatar.trigger}>Load Photo</button>

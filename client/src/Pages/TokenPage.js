@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from 'react-router-dom'
 
 
 function TokenPage() {
@@ -17,7 +17,7 @@ function TokenPage() {
         <div className="token">
             Loading...
         </div>
-    );
+    )
 }
 
 export default TokenPage

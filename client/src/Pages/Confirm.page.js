@@ -26,7 +26,7 @@ function Confirm() {
     }, [searchParams])
     
     useEffect(() => {
-        verify().catch(console.error)
+        verify().catch()
     }, [verify])
 
     return (

@@ -16,7 +16,7 @@ function ComentForm({arcleId, update}) {
     return (
         <div>
             <h3>Your coment</h3>
-            <input {...text.bind} pattern='coment...' />
+            <input {...text.bind} pattern="coment..." />
             <button onClick={() => createHandle()}>Create</button>
         </div>
     )

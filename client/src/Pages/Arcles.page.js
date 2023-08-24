@@ -11,7 +11,7 @@ function Arcles() {
     const loadArcles = useCallback(async () => setArcles(await getArcles()), [])
 
     useEffect(() => {
-        loadArcles().catch(console.error)
+        loadArcles().catch()
     }, [loadArcles])
 
 

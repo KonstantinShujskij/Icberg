@@ -1,6 +1,6 @@
-import notAuthRoutes from "./notAuth.routes"
-import authRoutes from "./auth.routes"
-import notCompliteRoutes from "./notComplite.routes"
+import notAuthRoutes from './notAuth.routes'
+import authRoutes from './auth.routes'
+import notCompliteRoutes from './notComplite.routes'
 
 
 export const useRoutes = (isAuth, isComplite) => {

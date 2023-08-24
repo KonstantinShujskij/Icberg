@@ -30,14 +30,14 @@ function Arcle() {
     const imageSourse = `${FRONT_URL}/store/images/${arcle?.author}/arcles/${arcle?.image}`
 
     useEffect(() => {
-        loadArcle().catch(console.error)
-        loadComents().catch(console.error)
+        loadArcle().catch()
+        loadComents().catch()
     }, [loadArcle, loadComents])
 
     return (
         <div className={styles.arcle}>
             <div className={styles.image}>
-                <img src={imageSourse} alt='arcle' />
+                <img src={imageSourse} alt="arcle" />
             </div>
             <div className={styles.content}>
                 <div className={styles.header}>

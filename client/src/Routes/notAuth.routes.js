@@ -1,12 +1,12 @@
-import React from "react"
-import { Routes, Route } from "react-router-dom"
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
 import Arcles from '../Pages/Arcles.page'
 import Author from '../Pages/Author.page'
 import Arcle from '../Pages/Arcle.page'
-import Auth from "../Pages/Auth.page"
-import TokenPage from "../Pages/TokenPage"
-import Confirm from "../Pages/Confirm.page"
-import Wait from "../Pages/Wait.page"
+import Auth from '../Pages/Auth.page'
+import TokenPage from '../Pages/TokenPage'
+import Confirm from '../Pages/Confirm.page'
+import Wait from '../Pages/Wait.page'
 
 
 const notAuthRoutes = (

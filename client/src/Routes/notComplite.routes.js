@@ -1,6 +1,6 @@
-import React from "react"
-import { Routes, Route } from "react-router-dom"
-import UpdateProfile from "../Pages/UpdateProfile.page"
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import UpdateProfile from '../Pages/UpdateProfile.page'
 
 
 const notCompliteRoutes = (

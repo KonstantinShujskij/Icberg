@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT } from "./types/auth.types"
+import { LOGIN, LOGOUT } from './types/auth.types'
 
 const initialState = {
     token: undefined,
@@ -6,12 +6,12 @@ const initialState = {
 }
 
 export default function userReducer(state=initialState, action) {
-  switch(action.type) {
-      case LOGIN:
+    switch(action.type) {
+    case LOGIN:
         return {...action.payload}
-      case LOGOUT:
+    case LOGOUT:
         return {...initialState}
-      default:
+    default:
         return state
-  }
+    }
 }

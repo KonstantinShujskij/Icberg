@@ -35,8 +35,8 @@ function Auth() {
     return (
         <div>
             <div>
-                <input {...email.bind} placeholder='Email' />
-                <input {...password.bind} placeholder='Password' type='password'/>
+                <input {...email.bind} placeholder="Email" />
+                <input {...password.bind} placeholder="Password" type="password"/>
             </div>
 
             <Captcha {...captcha.bind} />

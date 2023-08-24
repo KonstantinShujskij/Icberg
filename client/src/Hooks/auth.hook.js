@@ -1,8 +1,8 @@
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import useUser from "./user.hook"
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import useUser from './user.hook'
 
-import * as auth from "../redux/actions/auth.actions"
+import * as auth from '../redux/actions/auth.actions'
 import * as authSelectors from '../redux/selectors/auth.selectors'
 import * as userSelectors from '../redux/selectors/user.selectors'
 
@@ -17,7 +17,7 @@ export default function useAuth() {
     useEffect(() => { 
         if(token && !isUserLoad) { refreshUser() }
         if(!token && isUserLoad) { clearUser() }
-    }, [token, refreshUser, clearUser])
+    }, [token, isUserLoad, refreshUser, clearUser])
 
     const login = (userToken, userId) => { 
         dispath(auth.login(userToken, userId)) 

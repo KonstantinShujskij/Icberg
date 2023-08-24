@@ -50,7 +50,7 @@ function Edit() {
     }
 
     useEffect(() => {
-        loadArcle().catch(console.error)
+        loadArcle().catch()
     }, [loadArcle])
 
 
@@ -62,22 +62,22 @@ function Edit() {
             <div className={styles.top}>
                 <div className={styles.prew}>
                     {photo.element}
-                    <img src={imageSourse} />
+                    <img src={imageSourse} alt="ArcleImage" />
                 </div>
                 <div className={styles.info}>
-                    <input className={styles.title} {...title.bind} placeholder='title' />
-                    <textarea className={styles.description} {...description.bind}  placeholder='description'/>
+                    <input className={styles.title} {...title.bind} placeholder="title" />
+                    <textarea className={styles.description} {...description.bind}  placeholder="description"/>
                     <button className={styles.load} onClick={photo.trigger}>Load Photo</button>
                 </div>
             </div>            
             
             {(photo.image.src && 
                 <div className={styles.image}>
-                    <img src={imageSourse} />
+                    <img src={imageSourse} alt="ArcleImage" />
                 </div>
             )}
             <h2 className={styles.header}>{title.value? title.value : 'Title'}</h2>
-            <textarea className={styles.text} {...text.bind} placeholder='text' />
+            <textarea className={styles.text} {...text.bind} placeholder="text" />
 
             <div className={styles.buttons}>
                 <button className={styles.button} onClick={() => createHandler()} >Update</button>

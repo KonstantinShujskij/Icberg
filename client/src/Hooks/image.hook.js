@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useRef, useState } from 'react'
 
 
 export default function useImage() {
@@ -22,12 +22,12 @@ export default function useImage() {
     } 
 
     const element = <input 
-                        style={{display: 'none'}} 
-                        onChange={onChange} 
-                        ref={input} 
-                        type="file" 
-                        accept="image/png, image/jpg, image/jpeg" 
-                    /> 
+        style={{display: 'none'}} 
+        onChange={onChange} 
+        ref={input} 
+        type="file" 
+        accept="image/png, image/jpg, image/jpeg" 
+    /> 
 
     return {
         element,

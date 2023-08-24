@@ -1,5 +1,5 @@
-import {  useCallback, useState } from "react"
-import useCaptchaApi from "../API/captcha.api"
+import {  useCallback, useState } from 'react'
+import useCaptchaApi from '../API/captcha.api'
 
 
 export default function useCaptcha() {

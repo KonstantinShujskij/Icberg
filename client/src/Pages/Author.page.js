@@ -22,15 +22,15 @@ function Author() {
     if(author?.avatar) { avatarSourse = `${FRONT_URL}/store/images/${author.id}/${author.avatar}` }
 
     useEffect(() => {
-        loadAuthor().catch(console.error)
-        loadArcles().catch(console.error)
+        loadAuthor().catch()
+        loadArcles().catch()
     }, [loadAuthor, loadArcles])
 
     return (
         <div className={style.profile}>
             <div className={style.header}>
                 <div className={style.avatar}>
-                    <img src={avatarSourse} alt='avatar'/>
+                    <img src={avatarSourse} alt="avatar"/>
                 </div>
                 <div className={style.info}>
                     <div className={style.name}>{author?.name} {author?.lastname}</div>
@@ -38,7 +38,7 @@ function Author() {
                     <div className={style.site}>{author?.site}</div>
                 </div>
             </div>
-            <div className='arcles'>
+            <div className="arcles">
                 {arcles.map((arcle) => <Arcle arcle={arcle} key={arcle._id} />)}
             </div>
         </div>

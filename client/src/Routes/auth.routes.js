@@ -1,12 +1,12 @@
-import React from "react"
-import { Routes, Route } from "react-router-dom"
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
 import Arcles from '../Pages/Arcles.page'
 import Author from '../Pages/Author.page'
 import Arcle from '../Pages/Arcle.page'
-import UpdateProfile from "../Pages/UpdateProfile.page"
-import Profile from "../Pages/Profile.page"
-import Create from "../Pages/Create.page"
-import Edit from "../Pages/Edit.page"
+import UpdateProfile from '../Pages/UpdateProfile.page'
+import Profile from '../Pages/Profile.page'
+import Create from '../Pages/Create.page'
+import Edit from '../Pages/Edit.page'
 
 
 const authRoutes = (

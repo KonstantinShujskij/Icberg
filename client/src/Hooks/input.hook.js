@@ -1,4 +1,4 @@
-import {  useState } from "react"
+import {  useState } from 'react'
 
 
 export default function useInput(defaultValue='') {
@@ -16,6 +16,6 @@ export default function useInput(defaultValue='') {
     return {
         bind: { value, onChange },
         value,
-        changeValue,
+        changeValue
     }
 }

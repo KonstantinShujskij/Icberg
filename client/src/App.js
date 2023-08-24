@@ -1,5 +1,5 @@
-import {useRoutes} from "./Routes/routes"
-import { useSelector } from "react-redux"
+import {useRoutes} from './Routes/routes'
+import { useSelector } from 'react-redux'
 
 import * as authSelectors from './redux/selectors/auth.selectors'
 import * as userSelectors from './redux/selectors/user.selectors'

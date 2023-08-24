@@ -17,27 +17,29 @@ function Profile() {
     const loadArcles = useCallback(async () => setArcles(await getArclesByAuthor(user.id)), [user])
     
     useEffect(() => {
-        loadArcles().catch(console.error)
+        loadArcles().catch()
     }, [loadArcles])
 
     return (
         <div className={style.profile}>
             <div className={style.header}>
                 <div className={style.avatar}>
-                    <img src={user.avatarSourse} alt='avatar'/>
+                    <img src={user.avatarSourse} alt="avatar"/>
                 </div>
                 <div className={style.info}>
                     <div className={style.name}>{user.name} {user.lastname}</div>
                     <div className={style.count}>Arcles Write {user.arclesCount}</div>
-                    <a className={style.site} href={`http://${user.site}`} target='_blank'>{user.site}</a>
+                    <a className={style.site} href={`http://${user.site}`} target="_blank" rel="noreferrer">
+                        {user.site}
+                    </a>
                 </div>
             </div>
             <div>
-                <Link to='/update'>Edit Profile</Link>
+                <Link to="/update">Edit Profile</Link>
                 <br />
-                <Link to='/create'>Create Arcle</Link>
+                <Link to="/create">Create Arcle</Link>
             </div>
-            <div className='arcles'>
+            <div className="arcles">
                 {arcles.map((arcle) => <Arcle arcle={arcle} key={arcle._id} />)}
             </div>
         </div>

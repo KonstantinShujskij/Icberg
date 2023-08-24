@@ -1,9 +1,9 @@
-import { useCallback } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import useHttp from "./http.hook"
+import { useCallback } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import useHttp from './http.hook'
 
 import { logout } from '../redux/actions/auth.actions'
-import * as selectors from "../redux/selectors/auth.selectors"
+import * as selectors from '../redux/selectors/auth.selectors'
 
 
 export default function useApi() {
@@ -15,7 +15,7 @@ export default function useApi() {
     const publicRequest = useCallback(async (queris, data, type) => {
         try { return await request(queris, 'POST', data, {}, type) } 
         catch(error) { 
-            console.log(error);
+            console.log(error)
             throw error 
         } 
     }, [request])

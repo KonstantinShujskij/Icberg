@@ -8,7 +8,7 @@ function Captcha({image, rotate, refresh, rotateLeft, rotateRight}) {
     useEffect(() => {
         const load = async () => { await refresh() }
 
-        load().catch(console.error)
+        load().catch() 
     }, [])
 
     return (
@@ -23,7 +23,7 @@ function Captcha({image, rotate, refresh, rotateLeft, rotateRight}) {
                     style={{transform: `rotateZ(${rotate * 45}deg)`}}
                     onClick={() => refresh()}
                 >
-                    <img src={`data:image/png;base64, ${image}`} />
+                    <img src={`data:image/png;base64, ${image}`} alt="captcha" />
                 </div>
 
                 <button className={styles.right} onClick={rotateRight}>
