@@ -1,5 +1,9 @@
-import React from 'react'
-import useInput from '../Hooks/input.hook'
+import React, { useState } from 'react'
+
+import useName from '../Hooks/fields/name.hook'
+import useLastname from '../Hooks/fields/lastname.hook'
+import useWebsite from '../Hooks/fields/website.hook'
+
 import useUserApi from '../API/user.api'
 import useUser from '../Hooks/user.hook'
 import * as selectors from '../redux/selectors/user.selectors'
@@ -18,13 +22,18 @@ function UpdateProfile() {
 
     const user = useSelector(selectors.user)
 
-    const name = useInput(user.name)
-    const lastname = useInput(user.lastname)
-    const website = useInput(user.site)
-
+    const name = useName()
+    const lastname = useLastname()
+    const website = useWebsite()
     const avatar = useImage()
 
+    const [isRequest, setIsRequest] = useState(false)
+
     const compliteHandler = async () => {
+        if(!name.valid || !lastname.valid || !website.valid) { return }
+
+        setIsRequest(true)
+
         const form = new FormData()
 
         form.append('name', name.value)
@@ -38,6 +47,8 @@ function UpdateProfile() {
             refreshUser() 
             navigate('/profile')
         }
+
+        setIsRequest(false)
     }
 
     const avatarSourse = avatar.image.src? avatar.image.src : user.avatarSourse
@@ -51,12 +62,15 @@ function UpdateProfile() {
             <div className={styles.form}>
                 <div className={styles.info}>
                     <input {...name.bind} placeholder="name"/>
+                    {!name.valid && <p>{name.tooltip}</p>}
                     <input {...lastname.bind} placeholder="lastname"/>
+                    {!lastname.valid && <p>{lastname.tooltip}</p>}
                     <input {...website.bind} placeholder="web-site"/>
+                    {!website.valid && <p>{website.tooltip}</p>}
                 </div>
                 <div className={styles.buttons}>
                     <button onClick={avatar.trigger}>Load Photo</button>
-                    <button onClick={() => compliteHandler()}>Complite</button>
+                    <button onClick={() => compliteHandler()} disabled={isRequest}>Complite</button>
                 </div>
             </div>
         </div>

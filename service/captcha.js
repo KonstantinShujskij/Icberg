@@ -85,8 +85,8 @@ const generateCaptcha = async () => {
 }
 
 const reset = () => {
-    fs.writeFileSync(consts.captcha.seedPath, '')
-    fs.writeFileSync(consts.captcha.hashPath, '0')
+    fs.writeFileSync(consts.captcha.hashPath, '')
+    fs.writeFileSync(consts.captcha.seedPath, '0')
 }
 
 module.exports = { 

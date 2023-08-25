@@ -2,7 +2,11 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import useArcleApi from '../API/arcle.api'
 import useImage from '../Hooks/image.hook'
-import useInput from '../Hooks/input.hook'
+
+import useTitle from '../Hooks/fields/title.hook'
+import useDecription from '../Hooks/fields/description.hook'
+import useText from '../Hooks/fields/text.hook'
+
 
 import { FRONT_URL } from '../const'
 
@@ -15,13 +19,12 @@ function Edit() {
     const navigate = useNavigate()
     const { getArcle, updateArcle } = useArcleApi()
 
-    const title = useInput('')
-    const description = useInput('')
-    const text = useInput('')
-    const [image, setImage] = useState('')
-
+    const title = useTitle()
+    const description = useDecription()
+    const text = useText()
     const photo = useImage()
 
+    const [image, setImage] = useState('')
 
     const loadArcle = useCallback(async () => { 
         const arcle = await getArcle(id)
@@ -58,7 +61,6 @@ function Edit() {
 
     return (
         <div className={styles.main}>
-            Edit
             <div className={styles.top}>
                 <div className={styles.prew}>
                     {photo.element}
@@ -66,7 +68,7 @@ function Edit() {
                 </div>
                 <div className={styles.info}>
                     <input className={styles.title} {...title.bind} placeholder="title" />
-                    <textarea className={styles.description} {...description.bind}  placeholder="description"/>
+                    <textarea className={styles.description} {...description.bind} placeholder="description"/>
                     <button className={styles.load} onClick={photo.trigger}>Load Photo</button>
                 </div>
             </div>            

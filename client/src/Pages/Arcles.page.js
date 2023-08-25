@@ -17,7 +17,7 @@ function Arcles() {
 
 
     return (
-        <div>
+        <div className={styles.main}>
             {arcles.map((arcle) => <Arcle arcle={arcle} key={arcle._id} />)}
         </div>
     )

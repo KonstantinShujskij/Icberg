@@ -1,7 +1,7 @@
 module.exports = {
     captcha: {
-        seedPath: 'storage/captcha/hash.txt',
-        hashPath: 'storage/captcha/seed.txt',
+        seedPath: 'storage/captcha/seed.txt',
+        hashPath: 'storage/captcha/hash.txt',
         imagePath: 'storage/captcha/images',
         tempPath: 'storage/captcha/temp',
         imageSize: 64,
@@ -31,7 +31,7 @@ module.exports = {
             len: { min: 8, max: 24 },
         },
         name: {
-            len: { min: 2, max: 16 },
+            len: { min: 2, max: 18 },
         },
         lastname: {
             len: { min: 2, max: 16 },

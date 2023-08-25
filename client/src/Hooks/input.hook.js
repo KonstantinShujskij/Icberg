@@ -1,11 +1,17 @@
 import {  useState } from 'react'
 
 
-export default function useInput(defaultValue='') {
+const noop = () => true
+
+export default function useInput(defaultValue='', validation=noop, check=noop) {
     const [value, setValue] = useState(defaultValue)
+    const [valid, setValid] = useState(true)
 
     const onChange = (event) => { 
         const tempValue = event.target.value
+        if(!validation(tempValue)) { return }
+        setValid(check(tempValue))
+
         changeValue(tempValue)    
     }
 
@@ -16,6 +22,7 @@ export default function useInput(defaultValue='') {
     return {
         bind: { value, onChange },
         value,
+        valid,
         changeValue
     }
 }
