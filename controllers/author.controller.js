@@ -3,7 +3,8 @@ const fs = require('fs')
 const { generateLoginJwt } = require('../service/jwt')
 const { sendComfirmLink } = require('../service/mail')
 
-const errors = require('../errors')
+const paths = require('../const/paths')
+const errors = require('../const/errors')
 
 const Author = require('../models/Author.model')
 
@@ -23,7 +24,7 @@ async function login(email, password, service='none') {
         author.password = hashedPassword
         author.verify = verify
 
-        fs.mkdir(`store/images/${author._id}/arcles`, { recursive: true }, (err) => { 
+        fs.mkdir(paths.arclesDir(author._id), { recursive: true }, (err) => { 
             if(err) { throw errors.unknown } 
         })
 
@@ -69,7 +70,7 @@ async function update(author, params, avatar) {
     if(params.website) { author.site = params.website }
     if(avatar) { 
         if(author.avatar) { 
-            fs.unlink(`store/images/${author._id}/${author.avatar}`, (err) => {
+            fs.unlink(paths.authorAvatar(author._id, author.avatar), (err) => {
                 if(err) { throw errors.unknown }
             })
         }

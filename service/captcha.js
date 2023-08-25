@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const fs = require('fs')
 
 const config = require('config')
-const consts = require('../consts')
+const consts = require('../const/consts')
 
 
 const regToken = () => {

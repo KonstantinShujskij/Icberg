@@ -1,6 +1,6 @@
 const captcha = require('../service/captcha')
 
-const errors = require('../errors')
+const errors = require('../const/errors')
 
 
 module.exports = (req, res, next) => {

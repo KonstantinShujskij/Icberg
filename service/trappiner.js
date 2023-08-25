@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator')
 
-const errors = require('../errors')
+const errors = require('../const/errors')
 
 
 const trappiner = (handler) => {

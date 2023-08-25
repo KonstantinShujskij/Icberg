@@ -1,14 +1,18 @@
 const multer = require('multer')
+const paths = require('../const/paths')
+
 
 const storage = multer.diskStorage({
     destination(req, _file, callback) { 
-        let prefix = ''
-
         // Magic Values
-        if(req?.customPayload?.loadType === 'avatar') { prefix = `${req.author._id}/` }
-        if(req?.customPayload?.loadType === 'arcle') { prefix = `${req.author._id}/arcles/` }
+        if(req?.customPayload?.loadType === 'avatar') { 
+            return callback(null, paths.authorDir(req.author._id)) 
+        }
+        if(req?.customPayload?.loadType === 'arcle') { 
+            return callback(null, paths.arclesDir(req.author._id)) 
+        }
  
-        callback(null, `store/images/${prefix}`) 
+        callback(null, `store/images/`) 
     },
     filename(_req, file, callback) { 
         const name = (new Date().toISOString() + '-' + file?.originalname).replace(/:/g, '-')

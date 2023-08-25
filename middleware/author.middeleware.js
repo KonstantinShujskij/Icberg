@@ -1,4 +1,4 @@
-const errors = require('../errors')
+const errors = require('../const/errors')
 
 const Author = require('../models/Author.model')
 

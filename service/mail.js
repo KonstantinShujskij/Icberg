@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer')
 
 const config = require('config')
-const errors = require('../errors')
+const errors = require('../const/errors')
 
 
 const sendMail = (to, subject, text='', html='') => {

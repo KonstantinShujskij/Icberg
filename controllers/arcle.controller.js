@@ -1,6 +1,7 @@
 const fs = require('fs')
 
-const errors = require('../errors')
+const paths = require('../const/paths')
+const errors = require('../const/errors')
 
 const Arcle = require('../models/Arcle.model')
 
@@ -43,7 +44,7 @@ async function update(author, id, params, image) {
     if(params.text) { arcle.text = params.text }
     if(image) { 
         if(arcle.image) { 
-            fs.unlink(`store/images/${author._id}/arcles/${arcle.image}`, (err) => {
+            fs.unlink(paths.arcleImage(author._id, arcle.image), (err) => {
                 if(err) { throw errors.unknown }
             })
         }
