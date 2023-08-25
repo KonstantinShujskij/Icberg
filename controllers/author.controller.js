@@ -4,19 +4,20 @@ const { generateLoginJwt } = require('../service/jwt')
 const { sendComfirmLink } = require('../service/mail')
 
 const paths = require('../const/paths')
+const consts = require('../const/consts')
 const errors = require('../const/errors')
 
 const Author = require('../models/Author.model')
 
 
-async function login(email, password, service='none') {
+async function login(email, password, service=undefined) {
     const author = await Author.findOne({ email, verify: true })
 
     if(!author) {
-        const hashedPassword = service === 'none'? await bcrypt.hash(password, 12) : 'None'
+        const hashedPassword = !service? await bcrypt.hash(password, 12) : 'None'
         
         let verify = false
-        if(service === 'google') { verify = true } // Magic Values
+        if(service === consts.authTypes.google) { verify = true }
 
         let author = await Author.findOne({ email })
         if(!author) { author = new Author({ email }) }
@@ -38,7 +39,7 @@ async function login(email, password, service='none') {
         return author
     }
 
-    if(service === 'google') { return author } // Magic Values
+    if(service === consts.authTypes.google) { return author } 
 
     const isMatch = await bcrypt.compare(password, author.password);
     if(!isMatch) { throw errors.notFind }

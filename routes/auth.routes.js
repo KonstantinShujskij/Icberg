@@ -7,15 +7,16 @@ const trappiner = require('../service/trappiner')
 const { generateLoginJwt } = require('../service/jwt')
 
 const config = require('config')
+const consts = require('../const/consts')
 
 const Author = require('../controllers/author.controller')
 
 
 const router = Router()
 
-router.get('/google', passport.authenticate('google', { session: false, scope: ['email'] })) // Magic Values
+router.get('/google', passport.authenticate('google', { session: false, scope: ['email'] })) 
 
-router.get('/google/redirect', passport.authenticate('google', { session: false }), (req, res) => { // Magic Values
+router.get('/google/redirect', passport.authenticate('google', { session: false }), (req, res) => {
     const author = req.user
     const token = generateLoginJwt(author._id)
 
@@ -26,7 +27,7 @@ router.get('/google/redirect', passport.authenticate('google', { session: false 
 router.post('/login', captcha,
     [
         check('email', 'IncorectEmail').isEmail(),
-        check('password', 'IncorectPassword').isLength({min: 8}) // Magic Values
+        check('password', 'IncorectPassword').isLength(consts.author.password.len)
     ], 
     trappiner(async (req, res) => {
         const {email, password} = req.body

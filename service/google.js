@@ -3,6 +3,7 @@ const passportGoogle = require('passport-google-oauth')
 const Author = require('../controllers/author.controller')
 
 const config = require('config')
+const consts = require('../const/consts')
 
 
 const googleOptions = {
@@ -14,7 +15,7 @@ const googleOptions = {
 const googleStrategy = new passportGoogle.OAuth2Strategy(googleOptions,
     async (_request, _accessToken, _refreshToken, profile, done) => { 
         const email = profile._json.email
-        const author = await Author.login(email, undefined, 'google') // Magic Values
+        const author = await Author.login(email, undefined, consts.authTypes.google)
 
         return done(null, author)
 })

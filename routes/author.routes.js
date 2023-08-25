@@ -6,19 +6,20 @@ const file = require('../middleware/file.middleware')
 const addition = require('../middleware/addition.middleware')
 const trappiner = require('../service/trappiner')
 
+const consts = require('../const/consts')
+
 const Author = require('../controllers/author.controller')
 
 
 const router = Router()
 
 router.post('/update', auth, isExist,
-    addition({ loadType: 'avatar' }),
+    addition({ loadType: consts.imagesLoadType.avatar }),
     file.single('avatar'),
     [
-        check('name', 'IncorectName').optional({checkFalsy: true}).isString().isLength({min: 2}),
-        check('lastname', 'IncorectLastname').optional({checkFalsy: true}).isString().isLength({min: 2}),
+        check('name', 'IncorectName').optional({checkFalsy: true}).isString().isLength(consts.author.name.len),
+        check('lastname', 'IncorectLastname').optional({checkFalsy: true}).isString().isLength(consts.author.lastname.len),
         check('website', 'IncorectWebsite').optional({checkFalsy: true}).isURL()
-        // Magic Values
     ],
     trappiner(async (req, res) => {
         const avatar = req.file?.filename

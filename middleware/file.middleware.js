@@ -1,14 +1,15 @@
 const multer = require('multer')
+
 const paths = require('../const/paths')
+const consts = require('../const/consts')
 
 
 const storage = multer.diskStorage({
     destination(req, _file, callback) { 
-        // Magic Values
-        if(req?.customPayload?.loadType === 'avatar') { 
+        if(req?.customPayload?.loadType === consts.imagesLoadType.avatar) { 
             return callback(null, paths.authorDir(req.author._id)) 
         }
-        if(req?.customPayload?.loadType === 'arcle') { 
+        if(req?.customPayload?.loadType === consts.imagesLoadType.arcle) { 
             return callback(null, paths.arclesDir(req.author._id)) 
         }
  
@@ -20,7 +21,7 @@ const storage = multer.diskStorage({
     }
 })
 
-const types = ['image/png', 'image/jpg', 'image/jpeg'] // Magic Values
+const types = ['image/png', 'image/jpg', 'image/jpeg'] 
 
 const fileFilter = (req, file, callback) => {
     if(types.includes(file?.mimetype)) { callback(null, true) }

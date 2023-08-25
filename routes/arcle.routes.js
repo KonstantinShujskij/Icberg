@@ -6,23 +6,24 @@ const file = require('../middleware/file.middleware')
 const addition = require('../middleware/addition.middleware')
 const trappiner = require('../service/trappiner')
 
+const consts = require('../const/consts')
+
 const Arcle = require('../controllers/arcle.controller')
 
 
 const router = Router()
 
 router.post('/create', auth, isExist, isComplite, 
-    addition({ loadType: 'arcle' }),
+    addition({ loadType: consts.imagesLoadType.arcle }),
     file.single('image'),
     [
-        check('title', 'IncorectTitle').isString().isLength({min: 6}),
-        check('description', 'IncorectDescription').isString().isLength({min: 4, max: 500}),
-        check('text', 'IncorectText').isString().isLength({min: 10, max: 10000}), 
-        // Magic Values
+        check('title', 'IncorectTitle').isString().isLength(consts.arcle.title.len),
+        check('description', 'IncorectDescription').isString().isLength(consts.arcle.description.len),
+        check('text', 'IncorectText').isString().isLength(consts.arcle.text.len), 
     ], trappiner(async (req, res) => {
         const image = req.file?.filename
 
-        const arcle = await Arcle.create(req.author, req.body, image)
+        await Arcle.create(req.author, req.body, image)
         
         res.json(true)
     })
@@ -32,16 +33,15 @@ router.post('/update', auth, isExist, isComplite,
     addition({ loadType: 'arcle' }),
     file.single('image'),
     [
-        check('title', 'IncorectTitle').isString().isLength({min: 6}),
-        check('description', 'IncorectDescription').isString().isLength({min: 4, max: 500}),
-        check('text', 'IncorectText').isString().isLength({min: 10, max: 10000}),
-        // Magic Values
+        check('title', 'IncorectTitle').isString().isLength(consts.arcle.title.len),
+        check('description', 'IncorectDescription').isString().isLength(consts.arcle.description.len),
+        check('text', 'IncorectText').isString().isLength(consts.arcle.text.len),
     ], 
     trappiner(async (req, res) => {
         const { id } = req.body
         const image = req.file?.filename
 
-        const arcle = await Arcle.update(req.author, id, req.body, image)
+        await Arcle.update(req.author, id, req.body, image)
         
         res.json(true)
     })
