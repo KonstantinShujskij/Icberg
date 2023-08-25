@@ -1,0 +1,24 @@
+.alert {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #F78faf;
+    border: 1px solid #FFFFFF;
+    box-shadow: 4px 4px 17px rgba(0, 0, 0, 0.1), -4px -4px 17px #FFFFFF;
+    border-radius: 20px;
+    padding: 20px 16px;
+
+    position: fixed;
+    bottom: 20px;
+    left: calc(50% - 150px);
+    width: 300px;
+    max-width: 300px;
+    color: #f2f2f2;
+    transform: translateY(calc(100% + 20px));
+    transition: 0.4s ease;
+}
+
+.active {
+    transform: translateY(0);
+}

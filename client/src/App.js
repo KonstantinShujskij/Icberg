@@ -7,6 +7,7 @@ import * as userSelectors from './redux/selectors/user.selectors'
 import Header from './Components/Header'
 
 import './styles/app.css'
+import Alert from './Components/Alert'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <div className="app">
             <Header isAuth={isAuth} isComplite={isComplite} />
             {routes}
+            <Alert />
         </div>
     )
 }
