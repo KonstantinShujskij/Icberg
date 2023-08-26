@@ -1,54 +1,62 @@
 .main {
     padding: 48px;
+    width: 100%;
+    height: 100%;
+
+    user-select: none;
 }
 
 .form {
     width: 100%;
-    max-width: 480px;
-    margin: 0 auto;
-}
-
-.inputs {
+    margin-left: auto;
+    height: 100%;
     display: flex;
-    align-self: center;
-    justify-content: center;
-    width: 100%;
     flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
 }
 
-.inputs input {
+.row {
     width: 100%;
-    border: none;
-    padding: 16px 8px;
-    font-size: 20px;
-    outline: none;
-}
-
-.buttons {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 100%;
+    justify-content: flex-end;
     gap: 24px;
+    margin-bottom: 16px;
 }
 
-.buttons button {
-    padding: 16px 8px;
-    border-radius: 8px;
-    border: none;
+.row:last-child {
+    margin-bottom: 0;
+}
 
-    background-color: #3943B7;
-    color: #fff;
-    font-weight: 600;
-    font-size: 15px;
+.icon {
+    width: 64px;
+    height: 64px;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
-.buttons button:last-child {
+.icon img {
     width: 100%;
 }
 
-.google {
-    width: 64px;
-    background-color: #EA4335 !important;
+.payload {
+    width: 100%;
+    text-align: end;
+}
+
+.payload input {
+    text-align: end;
+}
+
+
+.captcha {
+    width: fit-content;
+    display: none;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.captcha.active {
+    display: block;
 }

@@ -1,6 +1,5 @@
 .main {
     width: 100%;
-    padding: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,11 +26,22 @@
     object-fit: cover;
 }
 
-.main button {
-    color: black;
-    font-size: 26px;
-    border-radius: 0;
-    border: none;
+.bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+    gap: 8px;
+}
+
+.bottom button {
+    width: 36px;
+    height: 36px;
     background-color: transparent;
-    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.bottom button img {
+    width: 100%;
 }
