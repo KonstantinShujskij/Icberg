@@ -24,9 +24,9 @@
 }
 
 .avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
     overflow: hidden;
 }
 
@@ -37,9 +37,12 @@
 }
 
 .profile {
-    font-size: 18px;
-    font-weight: 500;
-    color: #171719;
+    width: 64px;
+    height: 64px;
+}
+
+.profile img {
+    width: 100%;
 }
 
 .menu {

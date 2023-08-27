@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom'
 import useImage from '../Hooks/image.hook'
 
 import styles from '../styles/update-profile.page.module.css'
+import Input from '../Components/UI/Input'
 
 
 function UpdateProfile() {
@@ -22,9 +23,9 @@ function UpdateProfile() {
 
     const user = useSelector(selectors.user)
 
-    const name = useName()
-    const lastname = useLastname()
-    const website = useWebsite()
+    const name = useName(user.name)
+    const lastname = useLastname(user.lastname)
+    const website = useWebsite(user.website)
     const avatar = useImage()
 
     const [isRequest, setIsRequest] = useState(false)
@@ -61,12 +62,12 @@ function UpdateProfile() {
             </div>
             <div className={styles.form}>
                 <div className={styles.info}>
-                    <input {...name.bind} placeholder="name"/>
-                    {!name.valid && <p>{name.tooltip}</p>}
-                    <input {...lastname.bind} placeholder="lastname"/>
-                    {!lastname.valid && <p>{lastname.tooltip}</p>}
-                    <input {...website.bind} placeholder="web-site"/>
-                    {!website.valid && <p>{website.tooltip}</p>}
+                    <Input input={name} placeholder="name" />
+                    <Input input={lastname} placeholder="lastname" />
+                    <Input input={website} placeholder="web-site" />
+                    <p className={styles.statistic}>
+                        <b>Количество статей:</b> {user.arclesCount}
+                    </p>
                 </div>
                 <div className={styles.buttons}>
                     <button onClick={avatar.trigger}>Load Photo</button>

@@ -64,3 +64,14 @@
     font-family: 15px;
     text-align: justify;
 }
+
+.edit {
+    margin-bottom: 24px;
+    width: 64px;
+    height: 64px;
+    display: block;
+}
+
+.edit img {
+    width: 100%;
+}

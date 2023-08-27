@@ -22,18 +22,31 @@ function Header({isAuth, isComplite}) {
         <div className={styles.header}>
             {isAuth && isComplite &&
                 <div className={styles.user}>
-                    <div className={styles.avatar}>
-                        <img src={user.avatarSourse} alt="avatar" />
-                    </div>
-                    <Link to="/profile" className={styles.profile}>Profile</Link>
+                    {location.pathname !== '/profile' &&
+                        <Link to="/profile" className={styles.avatar}>
+                            <img src={user.avatarSourse} alt="avatar" />
+                        </Link>
+                    }
+
+                    {location.pathname === '/profile' &&
+                        <Link to="/update" className={styles.avatar}>
+                            <img src={user.avatarSourse} alt="avatar" />
+                        </Link>
+                    }
+
+                    <Link to="/create" className={styles.avatar}>
+                        <img src={`${FRONT_URL}/icons/arcle.svg`} alt="Auth" />  
+                    </Link>
                 </div>
             }
             <div className={styles.menu}>
-                {(!isAuth || isComplite) && <Link to={'/'}>
+                {(!isAuth || isComplite) && location.pathname !== '/' && <Link to={'/'}>
                     <img src={`${FRONT_URL}/icons/home.svg`} alt="Home" />    
                 </Link>}
             
-                {isAuth && <div onClick={logoutHandler}>Log out</div>}
+                {isAuth && <a href="#" onClick={logoutHandler}>
+                    <img src={`${FRONT_URL}/icons/exit.svg`} alt="Auth" />  
+                </a>}
                 {!isAuth && location.pathname !== '/auth' && <Link to={'/auth'}>
                     <img src={`${FRONT_URL}/icons/auth.svg`} alt="Auth" />    
                 </Link>}

@@ -91,3 +91,8 @@
     font-size: 15px;
     cursor: pointer;
 }
+
+.statistic {
+    width: 100%;
+    margin-top: 8px;
+}

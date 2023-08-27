@@ -5,7 +5,9 @@ import useArcleApi from '../API/arcle.api'
 import useComentApi from '../API/coment.api'
 import { formatTime } from '../Utils/time.utils'
 
-import * as selectors from '../redux/selectors/auth.selectors'
+import * as selectorsAuth from '../redux/selectors/auth.selectors'
+import * as selectorsUser from '../redux/selectors/user.selectors'
+
 import { FRONT_URL } from '../const'
 
 import Coment from '../Components/Coment'
@@ -19,7 +21,8 @@ function Arcle() {
     const { getArcle } = useArcleApi()
     const { getComents } = useComentApi()
 
-    const isAuth = useSelector(selectors.isAuth)
+    const isAuth = useSelector(selectorsAuth.isAuth)
+    const user = useSelector(selectorsUser.user)
 
     const [arcle, setArcle] = useState(null)
     const [coments, setComents] = useState([])
@@ -40,6 +43,11 @@ function Arcle() {
                 <img src={imageSourse} alt="arcle" />
             </div>
             <div className={styles.content}>
+                {isAuth && arcle?.author === user?.id &&
+                    <Link className={styles.edit} to={`/edit/${id}`}>
+                        <img src={`${FRONT_URL}/icons/arcle.svg`} alt="Auth" />  
+                    </Link>
+                }
                 <div className={styles.header}>
                     <div className={styles.title}>{arcle?.title}</div>
                     <div className={styles.info}>
@@ -52,7 +60,6 @@ function Arcle() {
                 <div className={styles.text}>
                     {arcle?.text}
                 </div>
-                {isAuth && <Link to={`/edit/${id}`}>Edit</Link>}
             </div>
             <br />
             {coments.map((coment) => <Coment coment={coment} key={coment._id} />)}
