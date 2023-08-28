@@ -7,10 +7,12 @@ import useTitle from '../Hooks/fields/title.hook'
 import useDecription from '../Hooks/fields/description.hook'
 import useText from '../Hooks/fields/text.hook'
 
+import * as selectorsCmd from '../redux/selectors/command.selectors'
 
 import { FRONT_URL } from '../const'
 
 import styles from '../styles/create.page.module.css'
+import { useSelector } from 'react-redux'
 
 
 
@@ -18,6 +20,8 @@ function Edit() {
     const { id } = useParams()
     const navigate = useNavigate()
     const { getArcle, updateArcle } = useArcleApi()
+
+    const cmd = useSelector(selectorsCmd.cmd)
 
     const title = useTitle()
     const description = useDecription()
@@ -55,6 +59,11 @@ function Edit() {
     useEffect(() => {
         loadArcle().catch()
     }, [loadArcle])
+
+    useEffect(() => {
+        if(cmd === 'load') { photo.trigger() }
+        if(cmd === 'save') { createHandler() }
+    }, [cmd])
 
 
     const imageSourse = photo.image.src? photo.image.src : image

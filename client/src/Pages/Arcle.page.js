@@ -6,7 +6,6 @@ import useComentApi from '../API/coment.api'
 import { formatTime } from '../Utils/time.utils'
 
 import * as selectorsAuth from '../redux/selectors/auth.selectors'
-import * as selectorsUser from '../redux/selectors/user.selectors'
 import * as selectorsCmd from '../redux/selectors/command.selectors'
 
 import { FRONT_URL } from '../const'
@@ -24,7 +23,6 @@ function Arcle() {
     const navigate = useNavigate()
 
     const isAuth = useSelector(selectorsAuth.isAuth)
-    const user = useSelector(selectorsUser.user)
     const cmd = useSelector(selectorsCmd.cmd)
 
     const [arcle, setArcle] = useState(null)

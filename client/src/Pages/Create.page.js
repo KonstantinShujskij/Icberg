@@ -1,11 +1,17 @@
-import React, { useState } from 'react'
-import useInput from '../Hooks/input.hook'
+import React, { useEffect, useState } from 'react'
 import useArcleApi from '../API/arcle.api'
 import useUser from '../Hooks/user.hook'
 import { useNavigate } from 'react-router-dom'
 import useImage from '../Hooks/image.hook'
 import { FRONT_URL } from '../const'
 import styles from '../styles/create.page.module.css'
+import { useSelector } from 'react-redux'
+import useTitle from '../Hooks/fields/title.hook'
+import useDescription from '../Hooks/fields/description.hook'
+import useText from '../Hooks/fields/text.hook'
+import Input from '../Components/UI/Input'
+
+import * as selectorsCmd from '../redux/selectors/command.selectors'
 
 
 function Create() {
@@ -13,20 +19,17 @@ function Create() {
     const { createArcle } = useArcleApi()
     const { refreshUser } = useUser()
 
-    const title = useInput('', (value) => (value.length <= 64), (value) => {
-        return (value.length >= 6 && value.length <= 64)
-    })
-    const description = useInput('', (value) => (value.length <= 500), (value) => {
-        return (value.length >= 100 && value.length <= 500)
-    })
-    const text = useInput('', (value) => (value.length <= 50000), (value) => {
-        return (value.length >= 2000 && value.length <= 50000)
-    })
+    const cmd = useSelector(selectorsCmd.cmd)
+
+
+    const title = useTitle()
+    const description = useDescription()
+    const text = useText()
 
     const [isRequest, setIsRequest] = useState(false)
     
 
-    const photo = useImage()
+    const photo = useImage()  
 
     const createHandler = async () => {
         setIsRequest(true)
@@ -48,6 +51,11 @@ function Create() {
         setIsRequest(false)
     }
 
+    useEffect(() => {
+        if(cmd === 'load') { photo.trigger() }
+        if(cmd === 'save' && !isRequest) { createHandler() }
+    }, [cmd])
+
     const imageSourse = photo.image.src? photo.image.src : `${FRONT_URL}/images/defaultImage.jpg`
 
     return (
@@ -58,11 +66,8 @@ function Create() {
                     <img src={imageSourse} alt="ArcleImage" />
                 </div>
                 <div className={styles.info}>
-                    <input className={styles.title} {...title.bind} placeholder="title" />
-                    {!title.valid && <p>Title not valide. in range 6 - 64</p>}
-                    <textarea className={styles.description} {...description.bind}  placeholder="description"/>
-                    {!description.valid && <p>Description not valide. in range 150 - 500</p>}
-                    <button className={styles.load} onClick={photo.trigger}>Load Photo</button>
+                    <Input className={styles.title} input={title} placeholder="title" />
+                    <Input className={styles.description} input={description} placeholder="description" />
                 </div>
             </div>            
             
@@ -74,10 +79,6 @@ function Create() {
             <h2 className={styles.header}>{title.value? title.value : 'Title'}</h2>
             <textarea className={styles.text} {...text.bind} placeholder="text" />
             {!text.valid && <p>Text not valide. in range 2000 - 50000</p>}
-
-            <div className={styles.buttons}>
-                <button className={styles.button} onClick={() => createHandler()} disabled={isRequest}>Post</button>
-            </div>
         </div>
     )
 }

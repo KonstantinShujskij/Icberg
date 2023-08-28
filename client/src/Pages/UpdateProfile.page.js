@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import useName from '../Hooks/fields/name.hook'
 import useLastname from '../Hooks/fields/lastname.hook'
@@ -7,12 +7,15 @@ import useWebsite from '../Hooks/fields/website.hook'
 import useUserApi from '../API/user.api'
 import useUser from '../Hooks/user.hook'
 import * as selectors from '../redux/selectors/user.selectors'
+import * as selectorsCmd from '../redux/selectors/command.selectors'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import useImage from '../Hooks/image.hook'
 
 import styles from '../styles/update-profile.page.module.css'
 import Input from '../Components/UI/Input'
+
+
 
 
 function UpdateProfile() {
@@ -22,6 +25,8 @@ function UpdateProfile() {
     const { refreshUser } = useUser()
 
     const user = useSelector(selectors.user)
+    const cmd = useSelector(selectorsCmd.cmd)
+
 
     const name = useName(user.name)
     const lastname = useLastname(user.lastname)
@@ -52,6 +57,11 @@ function UpdateProfile() {
         setIsRequest(false)
     }
 
+    useEffect(() => {
+        if(cmd === 'load') { avatar.trigger() }
+        if(cmd === 'save' && !isRequest) { compliteHandler() }
+    }, [cmd])
+
     const avatarSourse = avatar.image.src? avatar.image.src : user.avatarSourse
 
     return (
@@ -68,10 +78,6 @@ function UpdateProfile() {
                     <p className={styles.statistic}>
                         <b>Количество статей:</b> {user.arclesCount}
                     </p>
-                </div>
-                <div className={styles.buttons}>
-                    <button onClick={avatar.trigger}>Load Photo</button>
-                    <button onClick={() => compliteHandler()} disabled={isRequest}>Complite</button>
                 </div>
             </div>
         </div>

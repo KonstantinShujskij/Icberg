@@ -2,10 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { formatTime } from '../Utils/time.utils'
 
+import styles from '../styles/coment.module.css'
+
 
 function Coment({ coment }) {
     return (
-        <div>
+        <div className={styles.main}>
             <div>{coment.text}</div>
             <div>{formatTime(coment.createdAt)}</div>
             <div>

@@ -1,0 +1,12 @@
+.main {
+    padding: 0 48px;
+    padding-bottom: 36px;
+}
+
+.text {
+    width: 100%;
+    padding: 8px 0;
+    font-size: 18px;
+    border: none;
+    outline: 0;
+}

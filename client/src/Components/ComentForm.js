@@ -1,23 +1,32 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import useComentApi from '../API/coment.api'
 import useInput from '../Hooks/input.hook'
+
+import styles from '../styles/coment-form.module.css'
+import { useSelector } from 'react-redux'
+import * as selectorsCmd from '../redux/selectors/command.selectors'
 
 
 function ComentForm({arcleId, update}) {
     const { createComent } = useComentApi()
     const text = useInput('')
 
-    const createHandle = async () => {
+    const cmd = useSelector(selectorsCmd.cmd)
+
+
+    const createHandler = async () => {
         const create = await createComent(arcleId, text.value)
 
         if(create) { update() }
     }
 
+    useEffect(() => {   
+        if(cmd === 'coment') { createHandler() }
+    }, [cmd])
+
     return (
-        <div>
-            <h3>Your coment</h3>
-            <input {...text.bind} pattern="coment..." />
-            <button onClick={() => createHandle()}>Create</button>
+        <div className={styles.main}>
+            <input className={styles.text} {...text.bind} placeholder="coment..." />
         </div>
     )
 }

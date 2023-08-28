@@ -21,12 +21,24 @@ function Header({isAuth, isComplite}) {
     const logoutHandler = () => { logout() }
 
     let isOwnArcle = false
+    let isOwnArcleEdit = false
+    let isComent = false
+
     const path = location.pathname.split('/')
     if(path.length > 1) {
         const id = path[path.length - 1]
         const arclePath = path[path.length - 2]
+        
+        if(arclePath === 'arcle') {
+            isComent = true
+        }
+
         if(arclePath === 'arcle' && user?.arcles.includes(id)) {
             isOwnArcle = true
+        }
+
+        if(arclePath === 'edit' && user?.arcles.includes(id)) {
+            isOwnArcleEdit = true
         }
     }
 
@@ -46,13 +58,41 @@ function Header({isAuth, isComplite}) {
                         </Link>
                     }
 
-                    <Link to="/create" className={styles.avatar}>
-                        <img src={`${FRONT_URL}/icons/arcle.svg`} alt="Auth" />  
-                    </Link>
+                    {location.pathname !== '/create' && 
+                        <Link to="/create" className={styles.avatar}>
+                            <img src={`${FRONT_URL}/icons/arcle.svg`} alt="Auth" />  
+                        </Link>
+                    }
 
                     {isOwnArcle && 
                         <a href="#" className={styles.avatar} onClick={() => pushCmd('edit')}>
                             <img src={`${FRONT_URL}/icons/edit.svg`} alt="Auth" />  
+                        </a>
+                    }
+
+                    {(location.pathname === '/create' || location.pathname === '/update') && <>
+                        <a href="#" className={styles.avatar} onClick={() => pushCmd('load')}>
+                            <img src={`${FRONT_URL}/icons/image.svg`} alt="Auth" />  
+                        </a>
+
+                        <a href="#" className={styles.avatar} onClick={() => pushCmd('save')}>
+                            <img src={`${FRONT_URL}/icons/save.svg`} alt="Auth" />  
+                        </a>
+                    </>}
+
+                    {isOwnArcleEdit && <>
+                        <a href="#" className={styles.avatar} onClick={() => pushCmd('load')}>
+                            <img src={`${FRONT_URL}/icons/image.svg`} alt="Auth" />  
+                        </a>
+
+                        <a href="#" className={styles.avatar} onClick={() => pushCmd('save')}>
+                            <img src={`${FRONT_URL}/icons/save.svg`} alt="Auth" />  
+                        </a>                    
+                    </>}
+
+                    {isComent && 
+                        <a href="#" className={styles.avatar} onClick={() => pushCmd('coment')}>
+                            <img src={`${FRONT_URL}/icons/comment.svg`} alt="Auth" />  
                         </a>
                     }
                 </div>
