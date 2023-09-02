@@ -10,6 +10,8 @@ import useTitle from '../Hooks/fields/title.hook'
 import useDescription from '../Hooks/fields/description.hook'
 import useText from '../Hooks/fields/text.hook'
 import Input from '../Components/UI/Input'
+import Text from '../Components/UI/Text'
+
 
 import * as selectorsCmd from '../redux/selectors/command.selectors'
 
@@ -67,7 +69,7 @@ function Create() {
                 </div>
                 <div className={styles.info}>
                     <Input className={styles.title} input={title} placeholder="title" />
-                    <Input className={styles.description} input={description} placeholder="description" />
+                    <Text className={styles.description} input={description} placeholder="description" />
                 </div>
             </div>            
             
@@ -77,8 +79,7 @@ function Create() {
                 </div>
             )}
             <h2 className={styles.header}>{title.value? title.value : 'Title'}</h2>
-            <textarea className={styles.text} {...text.bind} placeholder="text" />
-            {!text.valid && <p>Text not valide. in range 2000 - 50000</p>}
+            <Text className={styles.text} input={text} placeholder="text" />
         </div>
     )
 }

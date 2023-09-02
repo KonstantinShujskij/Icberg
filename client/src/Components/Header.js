@@ -95,16 +95,31 @@ function Header({isAuth, isComplite}) {
                             <img src={`${FRONT_URL}/icons/comment.svg`} alt="Auth" />  
                         </a>
                     }
+
+                    <a href="#" className={styles.avatar} onClick={() => pushCmd('search')}>
+                        <img src={`${FRONT_URL}/icons/search.svg`} alt="search" />  
+                    </a>
                 </div>
             }
             <div className={styles.menu}>
                 {(!isAuth || isComplite) && location.pathname !== '/' && <Link to={'/'}>
                     <img src={`${FRONT_URL}/icons/home.svg`} alt="Home" />    
                 </Link>}
+
+                {isAuth && location.pathname === '/auth' && <>
+                    <a href="#" className={styles.avatar} onClick={() => pushCmd('load')}>
+                        <img src={`${FRONT_URL}/icons/image.svg`} alt="Auth" />  
+                    </a>
+
+                    <a href="#" className={styles.avatar} onClick={() => pushCmd('save')}>
+                        <img src={`${FRONT_URL}/icons/save.svg`} alt="Auth" />  
+                    </a>                    
+                </>}
             
                 {isAuth && <a href="#" onClick={logoutHandler}>
                     <img src={`${FRONT_URL}/icons/exit.svg`} alt="Auth" />  
                 </a>}
+
                 {!isAuth && location.pathname !== '/auth' && <Link to={'/auth'}>
                     <img src={`${FRONT_URL}/icons/auth.svg`} alt="Auth" />    
                 </Link>}

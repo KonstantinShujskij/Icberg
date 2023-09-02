@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react'
 import useComentApi from '../API/coment.api'
-import useInput from '../Hooks/input.hook'
+import useComent from '../Hooks/fields/coment.hook'
 
 import styles from '../styles/coment-form.module.css'
 import { useSelector } from 'react-redux'
 import * as selectorsCmd from '../redux/selectors/command.selectors'
+import Text from '../Components/UI/Text'
 
 
 function ComentForm({arcleId, update}) {
     const { createComent } = useComentApi()
-    const text = useInput('')
+    const text = useComent()
 
     const cmd = useSelector(selectorsCmd.cmd)
 
@@ -21,12 +22,15 @@ function ComentForm({arcleId, update}) {
     }
 
     useEffect(() => {   
-        if(cmd === 'coment') { createHandler() }
+        if(cmd === 'coment') { 
+            createHandler() 
+            text.changeValue('')
+        }
     }, [cmd])
 
     return (
         <div className={styles.main}>
-            <input className={styles.text} {...text.bind} placeholder="coment..." />
+            <Text className={styles.text} input={text} placeholder="coment..." />
         </div>
     )
 }

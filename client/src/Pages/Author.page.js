@@ -1,12 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import style from '../styles/profile.page.module.css'
 import useArcleApi from '../API/arcle.api'
 import useAuthorApi from '../API/author.api'
 import Arcle from '../Components/Arcle'
 import { FRONT_URL } from '../const'
 import { useParams } from 'react-router-dom'
 
-import styles from '../styles/author.page.module.css'
+import style from '../styles/author.page.module.css'
 
 
 function Author() {
@@ -37,7 +36,10 @@ function Author() {
                 </div>
                 <div className={style.info}>
                     <div className={style.name}>{author?.name} {author?.lastname}</div>
-                    <div className={style.count}>Arcles Write {author?.arclesCount}</div>
+                    <div className={style.count}>
+                        <i class="fa-solid fa-newspaper"></i>
+                        {author?.arclesCount}
+                    </div>
                     <div className={style.site}>{author?.site}</div>
                 </div>
             </div>

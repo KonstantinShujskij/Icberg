@@ -7,7 +7,8 @@ import styles from '../styles/arcle.module.css'
 
 
 function Arcle({arcle}) {
-    const imageSourse = `${FRONT_URL}/store/images/${arcle.author}/arcles/${arcle.image}`
+    let imageSourse = `${FRONT_URL}/store/images/${arcle?.author}/arcles/${arcle?.image}`
+    if(!arcle.author) { imageSourse = `${FRONT_URL}/images/defaultImage.jpg` }
 
     return (
         <div className={styles.arcle}>
@@ -15,12 +16,18 @@ function Arcle({arcle}) {
                 <img src={imageSourse} alt={arcle.title} />
             </div>
             <div className={styles.content}>
-                <div className={styles.title}><Link to={`/arcle/${arcle._id}`}>{arcle.title}</Link></div>
-                <div className={styles.description}>{arcle.description}</div>
-                <div >Coments write: {arcle.comentsCount}</div>
-                <div >Created: {formatTime(arcle.createdAt)}</div>
-                <div className={styles.author}>
-          Author: <Link to={`/author/${arcle.author}`}>{arcle.authorName}</Link>
+                <Link className={styles.title} to={`/arcle/${arcle._id}`}>{arcle.title || 'Title'}</Link>
+                <div className={styles.description}>{arcle?.description}</div>
+                <div className={styles.info}>
+                    <Link className={styles.author} to={`/author/${arcle?.author}`}>
+                        <i className="fa-solid fa-user-pen"></i>
+                        {arcle?.authorName || 'Author'}
+                    </Link>
+                    <div className={styles.comment}>
+                        <i className="fa-solid fa-comment"></i> 
+                        {arcle?.comentsCount || '0'}
+                    </div>
+                    <div className={styles.date}>{formatTime(arcle?.createdAt)}</div>
                 </div>
             </div>
         </div>

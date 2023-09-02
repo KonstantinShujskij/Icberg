@@ -95,12 +95,6 @@ function Auth() {
                 </div>
 
                 <div className={styles.row}>
-                    <div className={styles.icon}>
-                        <img src={`${FRONT_URL}/icons/instagram.svg`} alt="google"/>
-                    </div>
-                </div>
-
-                <div className={styles.row}>
                     <div className={styles.icon} onClick={googleHandler}>
                         <img src={`${FRONT_URL}/icons/google.svg`} alt="google"/>
                     </div>
