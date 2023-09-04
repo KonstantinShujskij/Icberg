@@ -6,6 +6,8 @@ import { FRONT_URL } from '../const'
 import { useParams } from 'react-router-dom'
 
 import style from '../styles/author.page.module.css'
+import Search from '../Components/Search'
+import useSearch from '../Hooks/search.hook'
 
 
 function Author() {
@@ -17,11 +19,13 @@ function Author() {
     const [author, setAuthor] = useState(null) 
     const [arcles, setArcles] = useState([])
 
-    const loadAuthor = useCallback(async () => setAuthor(await getAuthor(id)), [id])
-    const loadArcles = useCallback(async () => setArcles(await getArclesByAuthor(id)), [id])
-
     let avatarSourse = `${FRONT_URL}/images/defaultAvatar.jpg`
     if(author?.avatar) { avatarSourse = `${FRONT_URL}/store/images/${author.id}/${author.avatar}` }
+
+    const search = useSearch(async (query) => setArcles(await getArclesByAuthor(id, query)))
+
+    const loadAuthor = useCallback(async () => setAuthor(await getAuthor(id)), [id])
+    const loadArcles = useCallback(async () => setArcles(await getArclesByAuthor(id)), [id])
 
     useEffect(() => {
         loadAuthor().catch()
@@ -43,6 +47,9 @@ function Author() {
                     <div className={style.site}>{author?.site}</div>
                 </div>
             </div>
+            
+            <Search {...search.bind} />
+            
             <div className="arcles">
                 {arcles.map((arcle) => <Arcle arcle={arcle} key={arcle._id} />)}
             </div>

@@ -1,5 +1,5 @@
 const {Router} = require('express')
-const { check } = require('express-validator')
+const { check, body } = require('express-validator')
 const { isExist, isComplite } = require('../middleware/author.middeleware')
 const auth = require('../middleware/auth.middleware')
 const file = require('../middleware/file.middleware')
@@ -56,15 +56,19 @@ router.post('/get', trappiner(async (req, res) => {
 }))
 
 router.post('/byAuthor', trappiner(async (req, res) => {
-    const { author } = req.body
+    const { author, query } = req.body
 
-    const arclesList = await Arcle.getByAuthor(author)
+    const arclesList = await Arcle.getByAuthor(author, query)
     
     res.json(arclesList)
 }))
 
 router.post('/list', trappiner(async (req, res) => {
-    const arclesList = await Arcle.list()
+    const { query } = req.body
+
+    console.log(query);
+
+    const arclesList = await Arcle.list(query)
     
     res.json(arclesList)
 }))

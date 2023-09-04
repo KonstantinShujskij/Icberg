@@ -23,6 +23,7 @@ function Header({isAuth, isComplite}) {
     let isOwnArcle = false
     let isOwnArcleEdit = false
     let isComent = false
+    let isSearch = location.pathname === '/profile' || location.pathname === '/'
 
     const path = location.pathname.split('/')
     if(path.length > 1) {
@@ -40,12 +41,16 @@ function Header({isAuth, isComplite}) {
         if(arclePath === 'edit' && user?.arcles.includes(id)) {
             isOwnArcleEdit = true
         }
+
+        if(arclePath === 'author') {
+            isSearch = true
+        }
     }
 
     return (
         <div className={styles.header}>
-            {isAuth && isComplite &&
-                <div className={styles.user}>
+            <div className={styles.user}>
+                {isAuth && isComplite && <>
                     {location.pathname !== '/profile' &&
                         <Link to="/profile" className={styles.avatar}>
                             <img src={user.avatarSourse} alt="avatar" />
@@ -95,12 +100,15 @@ function Header({isAuth, isComplite}) {
                             <img src={`${FRONT_URL}/icons/comment.svg`} alt="Auth" />  
                         </a>
                     }
+                </>}
 
+                {isSearch && 
                     <a href="#" className={styles.avatar} onClick={() => pushCmd('search')}>
                         <img src={`${FRONT_URL}/icons/search.svg`} alt="search" />  
                     </a>
-                </div>
-            }
+                }
+            </div>
+
             <div className={styles.menu}>
                 {(!isAuth || isComplite) && location.pathname !== '/' && <Link to={'/'}>
                     <img src={`${FRONT_URL}/icons/home.svg`} alt="Home" />    

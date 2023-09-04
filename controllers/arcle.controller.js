@@ -76,8 +76,11 @@ async function get(id) {
     return arcle
 }
 
-async function getByAuthor(author) {
-    const list = await Arcle.find({ author })
+async function getByAuthor(author, query) {
+    const options = { author }
+    if(query) { options.title = {$regex: `.*${query}.*`, $options: 'i'} }
+
+    const list = await Arcle.find(options)
     const format = list.map((arcle) => ({
         ...arcle._doc,
         text: undefined,
@@ -87,8 +90,9 @@ async function getByAuthor(author) {
     return format
 }
 
-async function list(a) {
-    const list = await Arcle.find()
+async function list(query) {
+    const options = query? {title: {$regex: `.*${query}.*`, $options: 'i'}} : undefined
+    const list = await Arcle.find(options)
 
     const format = list.map((arcle) => ({
         ...arcle._doc,

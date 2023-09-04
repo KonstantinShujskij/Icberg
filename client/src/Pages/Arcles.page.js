@@ -5,8 +5,7 @@ import useInput from '../Hooks/input.hook'
 
 import styles from '../styles/arcles.page.module.css'
 import Search from '../Components/Search'
-import { useSelector } from 'react-redux'
-import * as selectorsCmd from '../redux/selectors/command.selectors'
+import useSearch from '../Hooks/search.hook'
 
 
 const initialArcle = [
@@ -20,27 +19,15 @@ function Arcles() {
 
     const [arcles, setArcles] = useState(initialArcle)
 
-    const [showSearch, setShowSearch] = useState(false)
-
-    const query = useInput('')
-
-    const cmd = useSelector(selectorsCmd.cmd)
-    
+    const search = useSearch(async (query) => setArcles(await getArcles(query)))
 
     const loadArcles = useCallback(async () => setArcles(await getArcles()), [])
 
-    useEffect(() => {
-        loadArcles().catch()
-    }, [loadArcles])
-
-    useEffect(() => {   
-        if(cmd === 'search') { if(!showSearch) { setShowSearch(true) } }
-    }, [cmd])
+    useEffect(() => { loadArcles().catch() }, [loadArcles])
 
     return (
         <div className={styles.main}>
-            
-            {showSearch && <Search query={query} />}
+            <Search {...search.bind} />
             {arcles.map((arcle) => <Arcle arcle={arcle} key={arcle._id} />)}
         </div>
     )

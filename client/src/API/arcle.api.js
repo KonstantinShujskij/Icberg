@@ -4,13 +4,13 @@ import useApi from '../Hooks/api.hook'
 export default function useArcleApi() {
     const { publicRequest, protectedRequest } = useApi()
 
-    const getArcles = async () => {
-        try { return await publicRequest('api/arcle/list') }
+    const getArcles = async (query) => {
+        try { return await publicRequest('api/arcle/list', {query}) }
         catch(error) { return [] } 
     }
 
-    const getArclesByAuthor = async (authorId) => {
-        try { return await publicRequest('api/arcle/byAuthor', {author: authorId}) }
+    const getArclesByAuthor = async (authorId, query) => {
+        try { return await publicRequest('api/arcle/byAuthor', {author: authorId, query}) }
         catch(error) { return [] } 
     }
 
