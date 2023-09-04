@@ -16,7 +16,7 @@ app.use(passport.initialize())
 passport.use(require('./service/google'))
 
 // Static
-app.use('/store', express.static(path.join(__dirname, 'store')));
+app.use('/store', express.static(path.join(__dirname, 'store')))
 
 // Routes
 app.use('/api/auth', require('./routes/auth.routes'))
@@ -25,6 +25,13 @@ app.use('/api/author', require('./routes/author.routes'))
 app.use('/api/arcle', require('./routes/arcle.routes'))
 app.use('/api/coment', require('./routes/coment.routes'))
 
+if (process.env.NODE_ENV === 'production') {
+    app.use('/', express.static(path.join(__dirname, 'client', 'build')))
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+}
 
 // Entry Point
 async function start() {

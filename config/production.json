@@ -1,22 +1,22 @@
 {
-    "serverUrl": "",
-    "baseUrl": "",
-    "port": 5000,
+    "serverUrl": "http://78.140.137.56",
+    "baseUrl": "http://78.140.137.56",
+    "port": 80,
 
-    "jwtSecret": "",
-    "jwtAlive": "1h",
+    "jwtSecret": "NHrmJipPAavz6Juw",
+    "jwtAlive": "24h",
 
-    "googleClientId": "",
-    "googleSecretKey": "",
+    "googleClientId": "848888663094-hk26vj1q4h65ccd00l1nc65buj0tmsj9.apps.googleusercontent.com",
+    "googleSecretKey": "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",
 
-    "mongoUri": "",
+    "mongoUri": "mongodb+srv://root:hAlPR5IS1cwCko03@iceberg.3hjvgwt.mongodb.net/?retryWrites=true&w=majority",
     
     "mail": {
-        "smtp": "",
+        "smtp": "smtppro.zoho.eu",
         "port": 465,
-        "client": "",
-        "password": ""
+        "client": "captcha@site-development.company",
+        "password": "UAUHa7cb4Zwqdc!"
     },
 
-    "captchaAlive": "1m"
+    "captchaAlive": "5m"
 }

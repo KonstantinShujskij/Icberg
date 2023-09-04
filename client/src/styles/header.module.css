@@ -36,12 +36,13 @@
     object-fit: cover;
 }
 
-.profile {
+.icon {
     width: 64px;
     height: 64px;
+    cursor: pointer;
 }
 
-.profile img {
+.icon img {
     width: 100%;
 }
 

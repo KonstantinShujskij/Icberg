@@ -5,7 +5,6 @@
     ],
     "rules": {
         "no-console": "warn",
-        "prefer-const": "warn",
         "max-len": ["warn", {"code": 120}],
         "quotes": ["error", "single"],
         "jsx-quotes": ["error", "prefer-double"],

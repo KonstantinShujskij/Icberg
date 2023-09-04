@@ -11,13 +11,17 @@ export default function useSearch(callback) {
     const [isOpen, setIsOpen] = useState(false)
     const query = useInput('')
 
+    query.bind.onKeyDown = (event) => { 
+        if(event.key === 'Enter') { callback(query.value) } 
+    }
+
     useEffect(() => {   
         if(cmd === 'search') { 
             if(!isOpen) { return setIsOpen(true) } 
 
             callback(query.value) 
-        }
-    }, [cmd])
+        } 
+    }, [cmd]) 
 
     return { 
         query: query.value,
